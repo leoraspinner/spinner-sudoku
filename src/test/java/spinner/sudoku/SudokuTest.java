@@ -57,7 +57,7 @@ public class SudokuTest {
             System.out.println(error);
         }
 
-        assertTrue(errors.size() > 0, "No errors were detected in the board");
+        assertEquals(true, errors.size() > 0, "No errors were detected in the board");
     }
 
     @Test
@@ -65,8 +65,6 @@ public class SudokuTest {
         Sudoku sudoku = new Sudoku(boardWithoutErrors);
         List<String> errors = sudoku.getErrors();
 
-        assertTrue(errors.isEmpty(), "Errors were found in a correct Sudoku board");
-
-        System.out.println("No errors found, as expected.");
+        assertEquals(true, errors.isEmpty(), "Errors were found in a correct Sudoku board");
     }
 }
