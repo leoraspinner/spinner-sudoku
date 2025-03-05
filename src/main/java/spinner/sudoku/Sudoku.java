@@ -14,14 +14,18 @@ public class Sudoku {
         }
     }
 
-    public void displayBoard() {
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
-                System.out.print(board[i][j] + " ");
+                sb.append(board[i][j]).append(" ");
             }
-            System.out.println();
+            sb.append("\n");
         }
+        return sb.toString();
     }
+
 
     public List<String> getErrors() {
         List<String> errors = new ArrayList<>();
