@@ -31,7 +31,7 @@ public class Sudoku {
         List<String> errors = new ArrayList<>();
         checkRows(errors);
         checkColumns(errors);
-        checkSubgrids(errors);
+        checkBox(errors);
         return errors;
     }
 
@@ -67,8 +67,8 @@ public class Sudoku {
         }
     }
 
-    // Check for duplicates in each subgrid
-    private void checkSubgrids(List<String> errors) {
+    // Check for duplicates in each box
+    private void checkBox(List<String> errors) {
         for (int row = 0; row < 9; row += 3) {
             for (int col = 0; col < 9; col += 3) {
                 boolean[] seen = new boolean[9];
