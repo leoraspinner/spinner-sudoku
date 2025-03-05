@@ -1,6 +1,6 @@
-import org.junit.jupiter.api.Test;
+package spinner.sudoku;
 
-import spinner.sudoku.Sudoku;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -26,8 +26,8 @@ public class SudokuTest {
 
         for (String error : errors) {
             assertTrue(
-                    error.matches("column \\d+ row \\d+ duplicate \\d+") ||
-                            error.matches("Box \\d+ duplicate \\d+"),
+                    error.matches("column \\d+ row \\d+ duplicate \\d+")
+                            || error.matches("Box \\d+ duplicate \\d+"),
                     "Error message format is incorrect: " + error
             );
         }
