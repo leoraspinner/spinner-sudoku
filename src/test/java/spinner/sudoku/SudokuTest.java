@@ -59,6 +59,7 @@ public class SudokuTest {
 
         assertTrue(errors.size() > 0, "No errors were detected in the board");
     }
+
     @Test
     public void verifyNoErrors() {
         Sudoku sudoku = new Sudoku(boardWithoutErrors);
