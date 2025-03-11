@@ -15,17 +15,17 @@ import java.util.List;
  * GUI will interact with the Sudoku logic to validate the board and retrieve errors.
  */
 
-public class SudokuGUI {
+public class SudokuGui {
     private JFrame frame;
     private JTextField[][] cells;
     private Sudoku sudoku;
 
-    public SudokuGUI(Sudoku sudoku) {
+    public SudokuGui(Sudoku sudoku) {
         this.sudoku = sudoku;
-        initializeGUI();
+        initializeGui();
     }
 
-    private void initializeGUI() {
+    private void initializeGui() {
         frame = new JFrame("Sudoku");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(600, 650);
@@ -76,10 +76,6 @@ public class SudokuGUI {
         frame.setVisible(true);
     }
 
-    /**
-     * Validates the current board and highlights errors in the GUI.
-     * @return A list of SudokuError objects representing the errors found.
-     */
     private List<SudokuError> checkErrors() {
         int[][] currentBoard = new int[9][9];
         List<SudokuError> errors = new ArrayList<>();

@@ -51,7 +51,11 @@ public class SudokuTest {
 
         // Check if each error matches the expected error
         for (int i = 0; i < expectedErrors.size(); i++) {
-            assertEquals(expectedErrors.get(i), errors.get(i).toString(), "Error at index " + i + " doesn't match expected");
+            assertEquals(
+                    expectedErrors.get(i),
+                    errors.get(i).toString(),
+                    "Error at index " + i + " doesn't match expected"
+            );
         }
 
         System.out.println("Errors found:");

@@ -19,7 +19,7 @@ public class Main {
         Sudoku sudoku = new Sudoku(initialBoard);
 
         // Launch the GUI and pass the Sudoku object to it
-        new SudokuGUI(sudoku);
+        new SudokuGui(sudoku);
     }
 }
 
