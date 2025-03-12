@@ -1,6 +1,8 @@
 package spinner.sudoku;
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,7 +13,6 @@ import java.util.List;
  * GUI will be a 9x9 grid of JTextField components
  * Will display a partially completed board
  * User can manually enter numbers into the cells
- *
  * GUI will interact with the Sudoku logic to validate the board and retrieve errors.
  */
 
@@ -46,34 +47,50 @@ public class SudokuGui {
                     cells[i][j].setText(String.valueOf(board[i][j]));
                     cells[i][j].setEditable(false);
                     cells[i][j].setBackground(Color.LIGHT_GRAY);
+                } else {
+                    // Add DocumentListener to editable cells
+                    final int row = i;
+                    final int col = j;
+                    cells[i][j].getDocument().addDocumentListener(new DocumentListener() {
+                        @Override
+                        public void insertUpdate(DocumentEvent e) {
+                            checkCellAndUpdateErrors(row, col);
+                        }
+
+                        @Override
+                        public void removeUpdate(DocumentEvent e) {
+                            checkCellAndUpdateErrors(row, col);
+                        }
+
+                        @Override
+                        public void changedUpdate(DocumentEvent e) {
+                            // Plain text components don't fire these events
+                        }
+                    });
                 }
 
                 gridPanel.add(cells[i][j]);
             }
         }
 
-        JButton checkButton = new JButton("Check Errors");
+        frame.add(gridPanel, BorderLayout.CENTER);
+        frame.setVisible(true);
+    }
 
-        // Updated action listener to process errors programmatically
-        checkButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                List<SudokuError> errors = checkErrors();
-                if (!errors.isEmpty()) {
-                    System.out.println("Errors found:");
-                    for (SudokuError error : errors) {
-                        System.out.println("Error at row " + error.getRow() + ", column " + error.getColumn() + ": " + error.getNumber());
-                    }
-                } else {
-                    System.out.println("No errors found!");
+    private void checkCellAndUpdateErrors(int row, int col) {
+        SwingUtilities.invokeLater(() -> {
+            List<SudokuError> errors = checkErrors();
+            if (!errors.isEmpty()) {
+                System.out.println("Errors found:");
+                for (SudokuError error : errors) {
+                    System.out.println("Error at row " + error.getRow() +
+                            ", column " + error.getColumn() +
+                            ": " + error.getNumber());
                 }
+            } else {
+                System.out.println("No errors found!");
             }
         });
-
-        frame.add(gridPanel, BorderLayout.CENTER);
-        frame.add(checkButton, BorderLayout.SOUTH);
-
-        frame.setVisible(true);
     }
 
     private List<SudokuError> checkErrors() {
@@ -98,20 +115,20 @@ public class SudokuGui {
                 }
             }
 
-            sudoku.setBoard(currentBoard); // Update the Sudoku object
-            errors = sudoku.getErrors(); // Retrieve errors from Sudoku logic
+            sudoku.setBoard(currentBoard);
+            errors = sudoku.getErrors();
 
-            clearHighlights(); // Reset cell colors
+            clearHighlights();
 
             for (SudokuError error : errors) {
-                int row = error.getRow();
-                int col = error.getColumn();
+                int errorRow = error.getRow();
+                int errorCol = error.getColumn();
 
-                // Highlight only user-editable cells with errors
-                if (cells[row][col].isEditable()) {
-                    cells[row][col].setBackground(Color.RED);
+                if (cells[errorRow][errorCol].isEditable()) {
+                    cells[errorRow][errorCol].setBackground(Color.RED);
                 }
             }
+
 
         } catch (NumberFormatException ex) {
             // Handle invalid input
