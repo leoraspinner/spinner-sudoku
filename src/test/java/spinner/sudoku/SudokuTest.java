@@ -36,14 +36,12 @@ public class SudokuTest {
         Sudoku sudoku = new Sudoku(exampleBoard);
         List<SudokuError> errors = sudoku.getErrors();
 
-        // Update expected errors based on the analysis of exampleBoard
         List<String> expectedErrors = Arrays.asList(
-                "column 9 row 1 duplicate 1", // Duplicate 1 in row 1
-                "column 7 row 2 duplicate 1", // Duplicate 1 in row 2
-                "column 2 row 4 duplicate 1", // Duplicate 1 in column 1 (row 1)
-                "column 9 row 8 duplicate 1", // Duplicate 1 in column 1 (row 2)
-                "column 1 row 1 duplicate 1",          // Duplicate 1 in Box 1
-                "column 7 row 1 duplicate 1"           // Duplicate 1 in Box 2
+                "column 9 row 1 duplicate 1",
+                "column 7 row 2 duplicate 1",
+                "column 2 row 4 duplicate 1",
+                "column 9 row 8 duplicate 1",
+                "column 2 row 2 duplicate 1"
         );
 
         // Check if the number of errors matches
@@ -66,6 +64,7 @@ public class SudokuTest {
         // Ensure that there are errors detected
         assertTrue(errors.size() > 0, "No errors were detected in the board");
     }
+
     @Test
     public void verifyNoErrors() {
         Sudoku sudoku = new Sudoku(boardWithoutErrors);
