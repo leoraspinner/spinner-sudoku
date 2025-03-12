@@ -38,8 +38,12 @@ public class SudokuError {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
         SudokuError that = (SudokuError) obj;
         return row == that.row && column == that.column && number == that.number;
     }
