@@ -62,7 +62,7 @@ public class SudokuGui {
                 if (!errors.isEmpty()) {
                     System.out.println("Errors found:");
                     for (SudokuError error : errors) {
-                        System.out.println("Error at row " + error.getRow() + ", column " + error.getColumn());
+                        System.out.println("Error at row " + error.getRow() + ", column " + error.getColumn() + ": " + error.getNumber());
                     }
                 } else {
                     System.out.println("No errors found!");

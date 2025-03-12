@@ -42,6 +42,16 @@ public class Sudoku {
         return errors;
     }
 
+    //check to make sure the error isn't duplicated
+    private boolean errorExists(List<SudokuError> errors, int row, int column, int number) {
+        for (SudokuError error : errors) {
+            if (error.getRow() == row && error.getColumn() == column && error.getNumber() == number) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     // Check for duplicates in each row
     private void checkRows(List<SudokuError> errors) {
         for (int i = 0; i < 9; i++) {
@@ -50,7 +60,9 @@ public class Sudoku {
                 int num = board[i][j];
                 if (num != 0) {
                     if (seen[num - 1]) {
-                        errors.add(new SudokuError(i, j, num));
+                        if (!errorExists(errors, i, j, num)) {
+                            errors.add(new SudokuError(i, j, num));
+                        }
                     }
                     seen[num - 1] = true;
                 }
@@ -66,7 +78,9 @@ public class Sudoku {
                 int num = board[i][j];
                 if (num != 0) {
                     if (seen[num - 1]) {
-                        errors.add(new SudokuError(i, j, num));
+                        if (!errorExists(errors, i, j, num)) {
+                            errors.add(new SudokuError(i, j, num));
+                        }
                     }
                     seen[num - 1] = true;
                 }
@@ -76,16 +90,19 @@ public class Sudoku {
 
     // Check for duplicates in each box
     private void checkBox(List<SudokuError> errors) {
-        for (int row = 0; row < 9; row += 3) {
-            for (int col = 0; col < 9; col += 3) {
+        for (int boxRow = 0; boxRow < 9; boxRow += 3) {
+            for (int boxCol = 0; boxCol < 9; boxCol += 3) {
                 boolean[] seen = new boolean[9];
                 for (int i = 0; i < 3; i++) {
                     for (int j = 0; j < 3; j++) {
-                        int num = board[row + i][col + j];
+                        int row = boxRow + i;
+                        int col = boxCol + j;
+                        int num = board[row][col];
                         if (num != 0) {
                             if (seen[num - 1]) {
-                                int boxNumber = (row / 3) * 3 + (col / 3 + 1);
-                                errors.add(new SudokuError(row, col, num));
+                                if (!errorExists(errors, row, col, num)) {
+                                    errors.add(new SudokuError(row, col, num));
+                                }
                             }
                             seen[num - 1] = true;
                         }
