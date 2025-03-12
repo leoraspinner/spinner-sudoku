@@ -1,5 +1,7 @@
 package spinner.sudoku;
 
+import java.util.Objects;
+
 /** Plan for SudokuError:
  * error details for row, column, and number
  * have a toString() method for error representation
@@ -32,6 +34,19 @@ public class SudokuError {
 
     public int getNumber() {
         return number;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        SudokuError that = (SudokuError) obj;
+        return row == that.row && column == that.column && number == that.number;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(row, column, number);
     }
 
     @Override

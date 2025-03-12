@@ -44,13 +44,9 @@ public class Sudoku {
 
     //check to make sure the error isn't duplicated
     private boolean errorExists(List<SudokuError> errors, int row, int column, int number) {
-        for (SudokuError error : errors) {
-            if (error.getRow() == row && error.getColumn() == column && error.getNumber() == number) {
-                return true;
-            }
-        }
-        return false;
+        return errors.contains(new SudokuError(row, column, number));
     }
+
 
     // Check for duplicates in each row
     private void checkRows(List<SudokuError> errors) {
