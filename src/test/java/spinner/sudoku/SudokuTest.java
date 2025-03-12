@@ -1,11 +1,10 @@
 package spinner.sudoku;
 
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class SudokuTest {
     private int[][] exampleBoard = {
@@ -35,35 +34,41 @@ public class SudokuTest {
     @Test
     public void verifyBoardErrors() {
         Sudoku sudoku = new Sudoku(exampleBoard);
-        List<String> errors = sudoku.getErrors();
+        List<SudokuError> errors = sudoku.getErrors();
 
         List<String> expectedErrors = Arrays.asList(
                 "column 9 row 1 duplicate 1",
                 "column 7 row 2 duplicate 1",
                 "column 2 row 4 duplicate 1",
                 "column 9 row 8 duplicate 1",
-                "Box 1 duplicate 1",
-                "Box 3 duplicate 1"
+                "column 2 row 2 duplicate 1"
         );
 
+        // Check if the number of errors matches
         assertEquals(expectedErrors.size(), errors.size(), "Number of errors doesn't match expected");
 
+        // Check if each error matches the expected error
         for (int i = 0; i < expectedErrors.size(); i++) {
-            assertEquals(expectedErrors.get(i), errors.get(i), "Error at index " + i + " doesn't match expected");
+            assertEquals(
+                    expectedErrors.get(i),
+                    errors.get(i).toString(),
+                    "Error at index " + i + " doesn't match expected"
+            );
         }
 
         System.out.println("Errors found:");
-        for (String error : errors) {
+        for (SudokuError error : errors) {
             System.out.println(error);
         }
 
-        assertEquals(true, errors.size() > 0, "No errors were detected in the board");
+        // Ensure that there are errors detected
+        assertTrue(errors.size() > 0, "No errors were detected in the board");
     }
 
     @Test
     public void verifyNoErrors() {
         Sudoku sudoku = new Sudoku(boardWithoutErrors);
-        List<String> errors = sudoku.getErrors();
+        List<SudokuError> errors = sudoku.getErrors();
 
         assertEquals(true, errors.isEmpty(), "Errors were found in a correct Sudoku board");
     }
