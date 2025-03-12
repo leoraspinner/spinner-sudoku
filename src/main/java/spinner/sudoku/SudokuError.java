@@ -9,6 +9,6 @@ package spinner.sudoku;
  *                              highlight errors in red
  * */
 
-public record SudokuError (int row, int col, int num){
+public record SudokuError(int row, int col, int num){
 
 }
