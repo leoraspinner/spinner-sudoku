@@ -83,9 +83,9 @@ public class SudokuGui {
             if (!errors.isEmpty()) {
                 System.out.println("Errors found:");
                 for (SudokuError error : errors) {
-                    System.out.println("Error at row " + error.getRow()
-                            + ", column " + error.getColumn()
-                            + ": " + error.getNumber());
+                    System.out.println("Error at row " + error.row()
+                            + ", column " + error.col()
+                            + ": " + error.num());
                 }
             } else {
                 System.out.println("No errors found!");
@@ -121,8 +121,8 @@ public class SudokuGui {
             clearHighlights();
 
             for (SudokuError error : errors) {
-                int errorRow = error.getRow();
-                int errorCol = error.getColumn();
+                int errorRow = error.row();
+                int errorCol = error.col();
 
                 if (cells[errorRow][errorCol].isEditable()) {
                     cells[errorRow][errorCol].setBackground(Color.RED);
