@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2f160f92-a3a8-4c59-a44f-116407ff7135" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/spinner/sudoku/SudokuController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/spinner/sudoku/SudokuControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/spinner/sudoku/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/spinner/sudoku/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/spinner/sudoku/SudokuGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/spinner/sudoku/SudokuGui.java" afterDir="false" />
-    </list>
+    <list default="true" id="2f160f92-a3a8-4c59-a44f-116407ff7135" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

@@ -38,7 +38,7 @@ public class SudokuController {
 
             @Override
             public void changedUpdate(DocumentEvent e) {
-                // Plain text components don't fire these events
+
             }
         });
     }
