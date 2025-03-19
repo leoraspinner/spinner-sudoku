@@ -15,11 +15,9 @@ public class Main {
                 {0, 0, 0, 0, 8, 0, 0, 7, 9}
         };
 
-        // Create a Sudoku object with the initial board
-        Sudoku sudoku = new Sudoku(initialBoard);
-
-        // Launch the GUI and pass the Sudoku object to it
-        new SudokuGui(sudoku);
+        Sudoku model = new Sudoku(initialBoard);
+        SudokuGui view = new SudokuGui(model);
+        new SudokuController(model, view.getCells());
     }
 }
 
