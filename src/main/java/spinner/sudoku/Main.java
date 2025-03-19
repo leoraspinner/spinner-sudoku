@@ -17,7 +17,7 @@ public class Main {
 
         Sudoku model = new Sudoku(initialBoard);
         SudokuGui view = new SudokuGui(model);
-        new SudokuController(model, view); // Connect MVC
+        new SudokuController(model, view.getCells());
     }
 }
 

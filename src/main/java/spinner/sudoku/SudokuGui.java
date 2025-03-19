@@ -100,4 +100,8 @@ public class SudokuGui {
             }
         }
     }
+
+    public JTextField[][] getCells() {
+        return cells;
+    }
 }
